@@ -1,0 +1,27 @@
+@import 'variables';
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--black);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  color: var(--white);
+}
+
+ul, li {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}

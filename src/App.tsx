@@ -1,10 +1,16 @@
-import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './layout/Layout';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
-    <div>
-      123
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<MainPage/>}/>
+        </Route>
+      </Routes>
+    </>
   )
 }
 

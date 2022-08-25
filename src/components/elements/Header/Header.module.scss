@@ -1,0 +1,12 @@
+header {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    color: var(--red);
+    font-weight: 500;
+    letter-spacing: .1rem;
+  }
+}
