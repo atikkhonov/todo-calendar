@@ -1,17 +1,16 @@
 .button {
-  width: 5rem;
-  height: 3rem;
-  padding: .5rem 1rem;
+  padding: .5rem 2rem;
   
-  font-size: 1.5rem;
-  color: var(--white-600);
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid var(--white-500);
-  border-radius: 2rem;
+  color: var(--black);
+  font-size: 1.5em;
+  border: 1px solid var(--black);
+  border-radius: 50rem;
 
-  outline: none;
+  transition: .3s;  
 
-  > i {
-    font-size: 3rem;
+  &:hover {
+    color: var(--main-color);
+    background-color: var(--black);
+    border: 1px solid var(--main-color);
   }
-}
+} 

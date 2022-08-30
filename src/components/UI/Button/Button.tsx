@@ -1,19 +1,18 @@
 import React from 'react'
-
 import styles from './Button.module.scss'
 
 interface ButtonProps {
-  children: any;
-  callback: any;
+  text: string;
+  onClick: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, callback }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
   return (
     <button 
-      onClick={callback} 
       className={styles.button}
+      onClick={onClick}
     >
-      {children}
+      {text}
     </button>
   )
 }
