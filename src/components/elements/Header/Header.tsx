@@ -3,10 +3,9 @@ import React from 'react'
 import useTypedDispatch from '../../../hooks/useTypedDispatch'
 import useTypedSelector from '../../../hooks/useTypedSelector'
 import { signIn, signOut } from '../../../redux/slices/AuthSlice'
+import Button from '../../UI/Button/Button'
 
 import styles from './Header.module.scss' 
-
-import Button from '../../UI/Button/Button'
 
 const Header: React.FC = () => {
   const isAuth = useTypedSelector(state => state.authReducer.isAuth)

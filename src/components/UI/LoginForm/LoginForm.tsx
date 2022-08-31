@@ -1,90 +1,52 @@
-import React from 'react'
-import useTypedDispatch from '../../../hooks/useTypedDispatch'
-import { signIn } from '../../../redux/slices/AuthSlice'
+import { Button, Checkbox, Form, Input } from 'antd';
+import React from 'react';
 
-import styles from './LoginForm.module.scss'
+const LoginForm: React.FC = () => {
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
 
-interface LoginFormProps {
-}
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
 
-const LoginForm: React.FC<LoginFormProps> = ({  }) => {
-  const dispatch = useTypedDispatch()
-  
-  const [ login, setLogin ] = React.useState<string>('')
-  const [ password, setPassword ] = React.useState<string>('')
-  const [ loginDirty, setLoginDirty ] = React.useState<boolean>(false)
-  const [ passwordDirty, setPasswordDirty ] = React.useState<boolean>(false)
-  const [ loginError, setLoginError ] = React.useState<string>('Введите логин!')
-  const [ passwordError, setPasswordError ] = React.useState<string>('Введите пароль!')
-  const [ formValid, setFormValid ] = React.useState<boolean>(false)
-
-  React.useEffect(() => {
-    if (loginError || passwordError) {
-      setFormValid(false)
-    } else {
-      setFormValid(true)
-    }
-  }, [loginError, passwordError])
-  
-  const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLogin(e.target.value)
-    if (e.target.value.length <= 6) {
-      setLoginError("Неккоректный логин")
-    } else {
-      setLoginError("")
-    }
-  }
-
-  const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-    if (e.target.value.length <= 6 || e.target.value.length > 13) {
-      setPasswordError("Неккоректный пароль")
-      if (!e.target.value) {
-        setPasswordError("Введите пароль!")
-      }
-    } else {
-      setPasswordError("")
-    }
-  }
-  
-  
-  const blurHandler = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-    switch (e.target.name) {
-      case 'login':
-        setLoginDirty(true)
-        break
-      case 'password':
-        setPasswordDirty(true)
-        break
-    }
-  }
-  
   return (
-    <form className={styles.form}>
-      <h1>Authorization</h1>
-      <div className={styles.inputs}>
-        {(loginDirty && loginError) ? <div className={styles.error}>{loginError}</div> : <div className={styles.error}>&nbsp;</div>}
-        <input 
-          onBlur={e => blurHandler(e)} 
-          name="login" 
-          type="text" 
-          placeholder="Enter your login . . ."
-          value={login}
-          onChange={e => loginHandler(e)}
-        />
-        {(passwordDirty && passwordError) ? <div className={styles.error}>{passwordError}</div> : <div className={styles.error}>&nbsp;</div>}
-        <input 
-          onBlur={e => blurHandler(e)} 
-          name="password" 
-          type="password" 
-          placeholder="Enter your password . . ." 
-          value={password}
-          onChange={e => passwordHandler(e)}
-        />
-      </div>
-      <button onClick={() => console.log('123')} className={styles.button} disabled={!formValid} type="submit">Sign In</button> 
-    </form>
-  )
-}
+    <Form
+      name="basic"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+    >
+      <Form.Item
+        label="Username"
+        name="username"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+        <Checkbox>Remember me</Checkbox>
+      </Form.Item>
+
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
 
 export default LoginForm
