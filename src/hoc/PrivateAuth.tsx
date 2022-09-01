@@ -13,7 +13,7 @@ const PrivateAuth: React.FC<PrivateAuthProps> = ({ children }) => {
   return (
     isAuth
       ? children
-      : <Navigate to='/login' state={{ from: location }}/>
+      : <Navigate to='/public' state={{ from: location }}/>
   )
 }
 

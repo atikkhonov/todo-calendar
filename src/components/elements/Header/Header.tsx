@@ -2,17 +2,20 @@ import React from 'react'
 
 import useTypedDispatch from '../../../hooks/useTypedDispatch'
 import useTypedSelector from '../../../hooks/useTypedSelector'
-import { signIn, signOut } from '../../../redux/slices/AuthSlice'
+import { signOut } from '../../../redux/slices/AuthSlice'
+import { modalOpen } from '../../../redux/slices/ModalSlice'
 import Button from '../../UI/Button/Button'
 
 import styles from './Header.module.scss' 
 
 const Header: React.FC = () => {
-  const isAuth = useTypedSelector(state => state.authReducer.isAuth)
+  const { isAuth, user } = useTypedSelector(state => state.authReducer)
   const dispatch = useTypedDispatch()
   
+  console.log(user);
+  
   const onClickSignInHandler = () => {
-    dispatch(signIn())
+    dispatch(modalOpen())
   }
 
   const onClickSignOutHandler = () => {
@@ -27,10 +30,10 @@ const Header: React.FC = () => {
       <div className={styles.right}>
         {
           isAuth
-          ? <>
-            <div className={styles.user}>atikkhonov</div>
-            <Button text='sign out' onClick={onClickSignOutHandler} />
-          </>
+            ? <>
+              <div className={styles.user}>atikkhonov</div>
+              <Button text='sign out' onClick={onClickSignOutHandler} />
+            </>
             : <Button text='sign in' onClick={onClickSignInHandler} />
         }
       </div>
