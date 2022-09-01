@@ -2,7 +2,7 @@ import React from 'react'
 
 import useTypedDispatch from '../../../hooks/useTypedDispatch'
 import useTypedSelector from '../../../hooks/useTypedSelector'
-import { signOut } from '../../../redux/slices/AuthSlice'
+import { logout } from '../../../redux/slices/AuthSlice'
 import { modalOpen } from '../../../redux/slices/ModalSlice'
 import Button from '../../UI/Button/Button'
 
@@ -12,14 +12,12 @@ const Header: React.FC = () => {
   const { isAuth, user } = useTypedSelector(state => state.authReducer)
   const dispatch = useTypedDispatch()
   
-  console.log(user);
-  
   const onClickSignInHandler = () => {
     dispatch(modalOpen())
   }
 
   const onClickSignOutHandler = () => {
-    dispatch(signOut())
+    dispatch(logout())
   }
   
   return (
@@ -31,7 +29,7 @@ const Header: React.FC = () => {
         {
           isAuth
             ? <>
-              <div className={styles.user}>atikkhonov</div>
+              <div className={styles.user}>{user.username}</div>
               <Button text='sign out' onClick={onClickSignOutHandler} />
             </>
             : <Button text='sign in' onClick={onClickSignInHandler} />

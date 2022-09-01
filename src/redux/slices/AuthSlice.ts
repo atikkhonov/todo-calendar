@@ -3,41 +3,30 @@ import { IUser } from "../../models/IUser";
 
 interface AuthSlice {
   isAuth: boolean;
-  user: IUser;
-  isLoading: boolean;
-  isError: string;
+  user: IUser
 }
 
 const initialState: AuthSlice = {
   isAuth: false,
   user: {} as IUser,
-  isLoading: false,
-  isError: '',
 }
 
 export const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    signIn(state) {
+    login(state, action: PayloadAction<IUser>) {
       state.isAuth = true;
+      state.user.username = action.payload.username;
+      state.user.password = action.payload.password;
     },
-    signOut(state) {
+    logout(state) {
       state.isAuth = false;
-    },
-    setUser(state, action: PayloadAction<IUser>) {
-      state.isAuth = true;
-      state.user = action.payload;
-    },
-    removeUser() {
-
+      state.user = {} as IUser;
     }
-  },
-  extraReducers: {
-    
   }
 })
 
-export const { signIn, signOut, setUser } = authSlice.actions; 
+export const { login, logout } = authSlice.actions; 
 
 export default authSlice.reducer
