@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import MyModal from "./components/elements/modal/Modal";
+import MyModal from "./components/elements/Modal";
 import PrivateAuth from "./hoc/PrivateAuth";
 import useTypedSelector from "./hooks/useTypedSelector";
 import Layout from "./layout/Layout";

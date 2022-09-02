@@ -1,10 +1,10 @@
 import { Modal } from 'antd';
 import React from 'react'
-import useTypedDispatch from '../../../hooks/useTypedDispatch';
-import useTypedSelector from '../../../hooks/useTypedSelector';
+import useTypedDispatch from '../../hooks/useTypedDispatch';
+import useTypedSelector from '../../hooks/useTypedSelector';
 
-import { modalClose } from '../../../redux/slices/ModalSlice';
-import LoginForm from '../../UI/LogInForm/LoginForm';
+import { modalClose } from '../../redux/slices/ModalSlice';
+import LoginForm from '../UI/LoginForm';
 
 const MyModal = () => {
   const dispatch = useTypedDispatch()

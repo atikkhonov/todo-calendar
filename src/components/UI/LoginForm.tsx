@@ -1,26 +1,27 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { rules } from '../../../utils/rules';
-import useTypedDispatch from '../../../hooks/useTypedDispatch';
-import { login } from '../../../redux/slices/AuthSlice';
-import { modalClose } from '../../../redux/slices/ModalSlice';
+import { rules } from '../../utils/rules';
+import useTypedDispatch from '../../hooks/useTypedDispatch';
+import { modalClose } from '../../redux/slices/ModalSlice';
 import axios from 'axios';
-import { IUser } from '../../../models/IUser';
+import { login } from '../../redux/slices/AuthSlice';
+import { IUser } from '../../models/IUser';
 
 const LoginForm: React.FC = () => {
   const dispatch = useTypedDispatch()
   
+  
   const successSubmit = async (values: any) => {
     const responce = await axios.get<IUser[]>(`./users.json`)
-    const mockUser = responce.data.find(item => item.username === values.username && item.password === values.password)
+    const mockUser = responce.data.find((item: IUser) => item.username === values.username && item.password === values.password)
     if (mockUser) {
       dispatch(login(mockUser))
       dispatch(modalClose())
     } else {
-      return console.log("error")
+      return
     }
-  };
+  }
   
   const failedSubmit = (error: any) => {
     console.log('Failed:', error);

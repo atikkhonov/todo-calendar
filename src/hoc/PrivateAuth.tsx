@@ -3,7 +3,7 @@ import { useLocation, Navigate } from 'react-router-dom'
 import useTypedSelector from '../hooks/useTypedSelector'
 
 interface PrivateAuthProps {
-  children: any
+  children: React.ReactElement
 }
 
 const PrivateAuth: React.FC<PrivateAuthProps> = ({ children }) => {
@@ -11,9 +11,9 @@ const PrivateAuth: React.FC<PrivateAuthProps> = ({ children }) => {
   const location = useLocation();
 
   return (
-    isAuth
-      ? children
-      : <Navigate to='/public' state={{ from: location }}/>
+    !isAuth
+      ? <Navigate to='/main' state={{ from: location }}/>
+      : children
   )
 }
 

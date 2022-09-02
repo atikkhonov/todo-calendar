@@ -3,12 +3,16 @@ import { IUser } from "../../models/IUser";
 
 interface AuthSlice {
   isAuth: boolean;
-  user: IUser
+  user: IUser;
+  isLoading: boolean;
+  isError: Error; 
 }
 
 const initialState: AuthSlice = {
   isAuth: false,
   user: {} as IUser,
+  isLoading: false,
+  isError: {} as Error,
 }
 
 export const authSlice = createSlice({
@@ -17,13 +21,13 @@ export const authSlice = createSlice({
   reducers: {
     login(state, action: PayloadAction<IUser>) {
       state.isAuth = true;
-      state.user.username = action.payload.username;
-      state.user.password = action.payload.password;
+      state.user = action.payload;
     },
     logout(state) {
       state.isAuth = false;
       state.user = {} as IUser;
-    }
+    },
+
   }
 })
 

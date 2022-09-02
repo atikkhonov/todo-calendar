@@ -1,8 +1,9 @@
 import React from 'react'
+import EventCalendar from '../components/elements/EventCalendar'
 
 const MainPage: React.FC = () => {
   return (
-    <div>MainPage</div>
+    <EventCalendar events={[]}/>
   )
 }
 
