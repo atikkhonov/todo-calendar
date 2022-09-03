@@ -4,7 +4,7 @@ import useTypedDispatch from '../../hooks/useTypedDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
 
 import { modalClose } from '../../redux/slices/ModalSlice';
-import LoginForm from '../UI/LoginForm';
+import LoginForm from '../UI/LoginForm/LoginForm';
 
 const MyModal = () => {
   const dispatch = useTypedDispatch()

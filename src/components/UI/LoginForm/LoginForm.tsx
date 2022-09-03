@@ -1,32 +1,26 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { rules } from '../../utils/rules';
-import useTypedDispatch from '../../hooks/useTypedDispatch';
-import { modalClose } from '../../redux/slices/ModalSlice';
-import axios from 'axios';
-import { login } from '../../redux/slices/AuthSlice';
-import { IUser } from '../../models/IUser';
+import { rules } from '../../../utils/rules';
+import useTypedDispatch from '../../../hooks/useTypedDispatch';
+import { modalClose } from '../../../redux/slices/ModalSlice';
+import { AuthActionCreator } from '../../../redux/actionCreators/AuthActions';
+import { IUser } from '../../../models/IUser';
+import useTypedSelector from '../../../hooks/useTypedSelector';
+import styles from './LoginForm.module.scss'
+
 
 const LoginForm: React.FC = () => {
   const dispatch = useTypedDispatch()
+  const { isLoading, error } = useTypedSelector(state => state.authReducer)
   
+  const [username, setUsername] = React.useState<string>('')
+  const [password, setPassword] = React.useState<string>('')
   
-  const successSubmit = async (values: any) => {
-    const responce = await axios.get<IUser[]>(`./users.json`)
-    const mockUser = responce.data.find((item: IUser) => item.username === values.username && item.password === values.password)
-    if (mockUser) {
-      dispatch(login(mockUser))
-      dispatch(modalClose())
-    } else {
-      return
-    }
+  const successSubmit = async (values: IUser) => {
+    dispatch(AuthActionCreator.login(values))
   }
-  
-  const failedSubmit = (error: any) => {
-    console.log('Failed:', error);
-  }
-  
+
   const onSubmitHandler = () => {
     dispatch(modalClose())
   }
@@ -37,13 +31,17 @@ const LoginForm: React.FC = () => {
       className="login-form"
       initialValues={{ remember: true }}
       onFinish={successSubmit}
-      onFinishFailed={failedSubmit}
     >
+      { error && <h2 className={styles.warning}>{error}</h2> }
       <Form.Item
         name="username"
         rules={[rules.required("Please input your Username !")]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input 
+          prefix={<UserOutlined className="site-form-item-icon" />} 
+          placeholder="Username" 
+          value={username} 
+          onChange={e => setUsername(e.target.value)} />
       </Form.Item>
       <Form.Item
         name="password"
@@ -53,6 +51,8 @@ const LoginForm: React.FC = () => {
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
         />
       </Form.Item>
       <Form.Item>
@@ -61,6 +61,7 @@ const LoginForm: React.FC = () => {
           className="login-form-button" 
           type="primary" 
           onSubmit={onSubmitHandler}
+          loading={isLoading}
           style={{
             background: "var(--main-color)",
             border: "none",

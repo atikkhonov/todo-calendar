@@ -1,7 +1,10 @@
+
 import authReducer from './AuthSlice'
 import modalReducer from './ModalSlice'
 
-export default {
+const slices = {
   authReducer,
-  modalReducer
+  modalReducer,
 }
+
+export default slices

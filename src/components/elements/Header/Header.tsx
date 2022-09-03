@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import useTypedDispatch from '../../../hooks/useTypedDispatch'
 import useTypedSelector from '../../../hooks/useTypedSelector'
-import { logout } from '../../../redux/slices/AuthSlice'
+import { AuthActionCreator } from '../../../redux/actionCreators/AuthActions'
 import { modalOpen } from '../../../redux/slices/ModalSlice'
 import Button from '../../UI/Button/Button'
 
@@ -17,13 +18,17 @@ const Header: React.FC = () => {
   }
 
   const onClickSignOutHandler = () => {
-    dispatch(logout())
+    dispatch(AuthActionCreator.logout())
   }
   
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <div className={styles.logo}>uTime</div>
+        <Link to="main">
+          <div className={styles.logo}>
+            uTime
+          </div>
+        </Link>
       </div>
       <div className={styles.right}>
         {
