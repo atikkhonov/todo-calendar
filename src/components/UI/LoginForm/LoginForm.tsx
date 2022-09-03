@@ -4,21 +4,24 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { rules } from '../../../utils/rules';
 import useTypedDispatch from '../../../hooks/useTypedDispatch';
 import { modalClose } from '../../../redux/slices/ModalSlice';
-import { AuthActionCreator } from '../../../redux/actionCreators/AuthActions';
+import { AuthActionCreator } from '../../../redux/actionCreators/AuthActionCreator';
 import { IUser } from '../../../models/IUser';
 import useTypedSelector from '../../../hooks/useTypedSelector';
 import styles from './LoginForm.module.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm: React.FC = () => {
   const dispatch = useTypedDispatch()
   const { isLoading, error } = useTypedSelector(state => state.authReducer)
   
+  const navigate = useNavigate()
+  
   const [username, setUsername] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
   
   const successSubmit = async (values: IUser) => {
-    dispatch(AuthActionCreator.login(values))
+    dispatch(AuthActionCreator.login(values, navigate))
   }
 
   const onSubmitHandler = () => {
