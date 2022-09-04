@@ -1,7 +1,7 @@
 # Deploy
 
-u-time.vercel.app
-u-time-atikkhonov.vercel.app
+https://u-time-atikkhonov.vercel.app/public
+https://u-time.vercel.app/public
 
 # Getting Started with Create React App
 
