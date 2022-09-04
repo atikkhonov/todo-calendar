@@ -1,9 +1,9 @@
-import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
 import { AppDispath } from "..";
+import UserService from "../../api/UserService";
 import { IUser } from "../../models/IUser";
 import { login, logout, setError, setIsLoading } from "../slices/AuthSlice";
-import { modalClose } from "../slices/ModalSlice";
+import { modalFormClose } from "../slices/ModalSlice";
 
 
 export const AuthActionCreator = {
@@ -11,19 +11,19 @@ export const AuthActionCreator = {
     try {
       dispatch(setIsLoading(true));
       setTimeout(async () => {
-        const responce = await axios.get<IUser[]>(`./users.json`);
+        const responce = await UserService.getUsers();
         const mockUser = responce.data.find((item: IUser) => item.username === values.username && item.password === values.password);
         
         if (mockUser) {
           window.localStorage.setItem('auth', 'true');
           window.localStorage.setItem('username', mockUser.username);
           
-          if(navigate) {
+          if (navigate) {
             navigate("/main")
           }
           
           dispatch(login(mockUser));
-          dispatch(modalClose());
+          dispatch(modalFormClose());
         } else {
           dispatch(setError('Incorrect username or password !'));
         }

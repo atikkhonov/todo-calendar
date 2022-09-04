@@ -27,3 +27,9 @@ button {
   border: 0;
   background-color: inherit;
 }
+
+@media (max-width: 576px) {
+  * {
+    font-size: 10px;
+  }
+}

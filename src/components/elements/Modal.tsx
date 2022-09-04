@@ -3,26 +3,28 @@ import React from 'react'
 import useTypedDispatch from '../../hooks/useTypedDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
 
-import { modalClose } from '../../redux/slices/ModalSlice';
-import LoginForm from '../UI/LoginForm/LoginForm';
+import { modalFormClose } from '../../redux/slices/ModalSlice';
 
-const MyModal = () => {
+interface MyModalProps {
+  children: React.ReactNode;
+}
+
+const MyModal: React.FC<MyModalProps> = ({ children }) => {
   const dispatch = useTypedDispatch()
-  const { isOpen } = useTypedSelector(state => state.modalReducer)
+  const { isOpenForm } = useTypedSelector(state => state.modalReducer)
 
   const handleCancel = () => {
-    dispatch(modalClose())
+    dispatch(modalFormClose())
   };
   
   return (
     <>
       <Modal
-        visible={isOpen}
+        visible={isOpenForm}
         onCancel={handleCancel} 
         footer={null}
       >
-        <h1>Sign in</h1>
-        <LoginForm/>
+        {children}
       </Modal>
     </>
   )

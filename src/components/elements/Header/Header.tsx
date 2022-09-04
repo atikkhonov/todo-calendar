@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import useTypedDispatch from '../../../hooks/useTypedDispatch'
 import useTypedSelector from '../../../hooks/useTypedSelector'
 import { AuthActionCreator } from '../../../redux/actionCreators/AuthActionCreator'
-import { modalOpen } from '../../../redux/slices/ModalSlice'
+import { modalFormOpen } from '../../../redux/slices/ModalSlice'
 import Button from '../../UI/Button/Button'
 import Navigation from '../../UI/Navigation/Navigation'
 
@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate()
   
   const onClickSignInHandler = () => {
-    dispatch(modalOpen())
+    dispatch(modalFormOpen())
   }
 
   const onClickSignOutHandler = () => {

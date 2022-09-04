@@ -1,6 +1,7 @@
 import React from "react"
 import { Navigate, Route, Routes } from "react-router-dom";
 import MyModal from "./components/elements/Modal";
+import LoginForm from "./components/UI/LoginForm/LoginForm";
 import PrivateAuth from "./hoc/PrivateAuth";
 import useTypedDispatch from "./hooks/useTypedDispatch";
 import useTypedSelector from "./hooks/useTypedSelector";
@@ -11,7 +12,7 @@ import PublicPage from "./pages/PublicPage";
 import { login } from "./redux/slices/AuthSlice";
 
 function App() {
-  const isOpen = useTypedSelector(state => state.modalReducer.isOpen)
+  const isOpenForm = useTypedSelector(state => state.modalReducer.isOpenForm)
   const dispatch = useTypedDispatch()
   
   React.useEffect(() => {
@@ -39,7 +40,12 @@ function App() {
         </Route>
       </Routes>
       {
-        isOpen ? <MyModal/> : <></> 
+        isOpenForm
+        ? <MyModal>
+          <h1>Sign in</h1>
+          <LoginForm/>
+        </MyModal> 
+        : <></> 
       }
     </>
   )

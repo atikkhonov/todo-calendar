@@ -3,7 +3,7 @@ import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { rules } from '../../../utils/rules';
 import useTypedDispatch from '../../../hooks/useTypedDispatch';
-import { modalClose } from '../../../redux/slices/ModalSlice';
+import { modalFormClose } from '../../../redux/slices/ModalSlice';
 import { AuthActionCreator } from '../../../redux/actionCreators/AuthActionCreator';
 import { IUser } from '../../../models/IUser';
 import useTypedSelector from '../../../hooks/useTypedSelector';
@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
   }
 
   const onSubmitHandler = () => {
-    dispatch(modalClose())
+    dispatch(modalFormClose())
   }
   
   return (
