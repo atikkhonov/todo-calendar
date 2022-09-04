@@ -24,12 +24,15 @@ export const eventSlice = createSlice({
     setEvent(state, action: PayloadAction<IEvent[]>) {
       state.events = action.payload;
     },
+    deleteEvents(state) {
+      state.events = []
+    },
     setLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
-    }
+    },
   }
 }) 
 
-export const { setGuest, setEvent, setLoading } = eventSlice.actions
+export const { setGuest, setEvent, deleteEvents, setLoading } = eventSlice.actions
 
 export default eventSlice.reducer

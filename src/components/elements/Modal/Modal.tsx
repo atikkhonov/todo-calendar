@@ -1,9 +1,9 @@
 import { Modal } from 'antd';
 import React from 'react'
-import useTypedDispatch from '../../hooks/useTypedDispatch';
-import useTypedSelector from '../../hooks/useTypedSelector';
+import useTypedDispatch from '../../../hooks/useTypedDispatch';
+import useTypedSelector from '../../../hooks/useTypedSelector';
 
-import { modalFormClose } from '../../redux/slices/ModalSlice';
+import { modalFormClose } from '../../../redux/slices/ModalSlice';
 
 interface MyModalProps {
   children: React.ReactNode;

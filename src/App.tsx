@@ -1,6 +1,6 @@
 import React from "react"
 import { Navigate, Route, Routes } from "react-router-dom";
-import MyModal from "./components/elements/Modal";
+import MyModal from "./components/elements/Modal/Modal";
 import LoginForm from "./components/UI/LoginForm/LoginForm";
 import PrivateAuth from "./hoc/PrivateAuth";
 import useTypedDispatch from "./hooks/useTypedDispatch";

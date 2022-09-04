@@ -1,10 +1,12 @@
 import React from 'react'
 
+import PublicBlock from '../components/elements/PublicBlock/PublicBlock'
+
 const PublicPage = () => {
-  
-  
   return (
-    <div>PublicPage</div>
+    <>
+      <PublicBlock/>
+    </>
   )
 }
 

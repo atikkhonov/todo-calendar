@@ -1,9 +1,12 @@
 import { NavigateFunction } from "react-router-dom";
+
 import { AppDispath } from "..";
-import UserService from "../../api/UserService";
-import { IUser } from "../../models/IUser";
 import { login, logout, setError, setIsLoading } from "../slices/AuthSlice";
 import { modalFormClose } from "../slices/ModalSlice";
+
+import { IUser } from "../../models/IUser";
+
+import UserService from "../../api/UserService";
 
 
 export const AuthActionCreator = {

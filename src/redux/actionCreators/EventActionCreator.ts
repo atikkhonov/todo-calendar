@@ -1,7 +1,9 @@
 import { AppDispath } from "..";
-import UserService from "../../api/UserService";
+
+import { deleteEvents, setEvent, setGuest, setLoading } from "../slices/EventSlice";
+
 import { IEvent } from "../../models/IEvent";
-import { setEvent, setGuest, setLoading } from "../slices/EventSlice";
+import UserService from "../../api/UserService";
 
 export const EventActionCreator = {
   fetchGuests: () => async (dispatch: AppDispath) => {
@@ -37,6 +39,17 @@ export const EventActionCreator = {
       console.log(error);
       dispatch(setLoading(false))
     }
-    
+  },
+  clearCalendar: () => async (dispatch: AppDispath) => {
+    dispatch(setLoading(true))
+    try {
+      localStorage.removeItem("events");
+
+      dispatch(deleteEvents());
+      dispatch(setLoading(false));
+    } catch (error) {
+      console.log(error);
+      dispatch(setLoading(false));
+    }
   }
 } 

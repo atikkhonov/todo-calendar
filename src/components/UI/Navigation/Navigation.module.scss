@@ -8,11 +8,30 @@
   grid-template-columns: repeat(4, 1fr);
   
   .item {
+    padding: 1rem;
+
     color: var(--main-color);
     font-size: 1.3em;
     font-weight: 600;
     letter-spacing: 2px;
+
+    transition: .3s;
+
+    &:hover {
+      color: var(--main-color);
+      background-color: var(--black);
+    }
+
+  }
+  .active {
     padding: 1rem;
+
+    background-color: var(--blur-main-color);
+    color: var(--main-color);
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: 2px;
+
     transition: .3s;
 
     &:hover {

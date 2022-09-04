@@ -1,5 +1,7 @@
 :global{
   .ant-picker-calendar-full {
+    padding: 0 1rem;
+    
     .ant-picker-panel {
       .ant-picker-calendar-date-today {
         border-color: var(--main-color);  
@@ -127,5 +129,11 @@
 
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
     background-color: var(--main-color);
+  }
+
+  .ant-btn:hover, .ant-btn:focus {
+    color: var(--white);
+    border-color: var(--main-color);
+    background: var(--white);
   }
 }

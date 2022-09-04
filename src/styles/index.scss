@@ -28,6 +28,10 @@ button {
   background-color: inherit;
 }
 
+.ant-layout {
+  background-color: var(--white);
+}
+
 @media (max-width: 576px) {
   * {
     font-size: 10px;
