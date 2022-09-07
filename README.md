@@ -1,6 +1,6 @@
 # Stack
 
-ReactJS, Redux Toolkit, axios, Router DOM, SCSS, antDesign 
+TypeScript, ReactJS, Redux Toolkit, axios, Router DOM, SCSS, antDesign 
 
 
 # Deploy
