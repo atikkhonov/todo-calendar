@@ -1,3 +1,8 @@
+# Stack
+
+ReactJS, Redux Toolkit, axios, Router DOM, SCSS, antDesign 
+
+
 # Deploy
 
 https://u-time-atikkhonov.vercel.app/public
